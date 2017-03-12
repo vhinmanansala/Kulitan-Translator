@@ -1,0 +1,8 @@
+/public/node_modules
+/public/.sass-cache
+/vendor
+Homestead.json
+Homestead.yaml
+.env
+/.vagrant
+/Vagrantfile
