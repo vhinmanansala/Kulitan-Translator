@@ -18,6 +18,9 @@ header#pageHeader img {
   margin: 30px;
   padding: 30px;
 }
+#translatedContent img {
+  width: 64px;
+}
 
 #textBoxTranslator {
   border: 10px solid #000;

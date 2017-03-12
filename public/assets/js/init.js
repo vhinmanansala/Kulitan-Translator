@@ -1,15 +1,36 @@
 $(function() {
+    var URL = "http://kulitan.app/assets/kulitan/";
+    var IMAGE_PATH = "assets/kulitan/";
+    var IMAGE_EXTENSION = ".png";
+    var image;
+
     $('#textBoxTranslator').keyup(function() {
-        var number = new_count($(this).val());
-        console.log(number);
+        $('#translatedContent').empty();
+        var word = $(this).val();
+        var _syllables = syllables(word);
+
+        _syllables.forEach(function(syllable) {
+            if (_syllables.length > 1) {
+                if (syllable.length > 2) {
+                    var letters = syllable.split('');
+                    letters.forEach(function(letter) {
+                        image = "<img src='" + IMAGE_PATH + letter + IMAGE_EXTENSION + "'>";
+                        $('#translatedContent').append(image);
+                    });
+                } else {
+                    image = "<img src='" + IMAGE_PATH + syllable + IMAGE_EXTENSION + "'>";
+                    $('#translatedContent').append(image);
+                }
+               
+            }
+
+            if (_syllables.length < 2) {
+                var letters = syllable.split('');
+                letters.forEach(function(letter) {
+                    image = "<img src='" + IMAGE_PATH + letter + IMAGE_EXTENSION + "'>";
+                    $('#translatedContent').append(image);
+                });
+            }
+        });
     })
 });
-
-function new_count(word) {
-    word = word.toLowerCase();    
-
-    
-    word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');   
-    word = word.replace(/^y/, '');      
-    return word.match(/[aeiouy]{1,2}/g).length;                    
-}
