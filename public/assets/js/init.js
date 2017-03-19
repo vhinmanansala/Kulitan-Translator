@@ -10,27 +10,12 @@ $(function() {
         var _syllables = syllables(word);
 
         _syllables.forEach(function(syllable) {
-            if (_syllables.length > 1) {
-                if (syllable.length > 2) {
-                    var letters = syllable.split('');
-                    letters.forEach(function(letter) {
-                        image = "<img src='" + IMAGE_PATH + letter + IMAGE_EXTENSION + "'>";
-                        $('#translatedContent').append(image);
-                    });
-                } else {
-                    image = "<img src='" + IMAGE_PATH + syllable + IMAGE_EXTENSION + "'>";
-                    $('#translatedContent').append(image);
-                }
-               
-            }
-
-            if (_syllables.length < 2) {
-                var letters = syllable.split('');
-                letters.forEach(function(letter) {
-                    image = "<img src='" + IMAGE_PATH + letter + IMAGE_EXTENSION + "'>";
-                    $('#translatedContent').append(image);
-                });
-            }
+            var str = syllable.match(/.{1,2}/g);
+            
+            str.forEach(function(letter) {
+                image = "<img src='" + IMAGE_PATH + letter + IMAGE_EXTENSION + "'>";
+                $('#translatedContent').append(image);
+            })
         });
     })
 });
