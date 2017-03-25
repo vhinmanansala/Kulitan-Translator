@@ -9,6 +9,8 @@ $(function() {
         var word = $(this).val();
         var _syllables = syllables(word);
 
+        console.log(_syllables);
+
         _syllables.forEach(function(syllable) {
             var str = syllable.match(/.{1,2}/g);
             
