@@ -4,6 +4,14 @@ $(function() {
     var IMAGE_EXTENSION = ".png";
     var image;
 
+    $('#textBoxTranslator').focus(function() {
+        $(this).val('');
+    });
+
+    $('#textBoxTranslator').blur(function() {
+        $(this).val('Enter your text here');
+    });
+
     $('#textBoxTranslator').keyup(function() {
         $('#translatedContent').empty();
         var words = $(this).val().split(" ");

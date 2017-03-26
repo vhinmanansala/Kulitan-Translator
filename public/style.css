@@ -4,25 +4,34 @@ body {
 }
 
 header#pageHeader {
+  border-bottom: 1px solid #333;
   margin: 15px auto;
-  width: 400px;
+  padding-bottom: 30px;
 }
 header#pageHeader img {
+  display: block;
+  margin: 0 auto;
+  max-width: 400px;
+  margin: 0 auto;
   width: 100%;
 }
 
-#translatedContent {
-  border: 10px solid #000;
-  border-radius: 10px;
+#translatedContentWrapper {
+  display: table;
   height: 400px;
   margin: 30px;
-  padding: 30px;
+  width: 100%;
 }
-#translatedContent img {
+#translatedContentWrapper #translatedContent {
+  display: table-cell;
+  vertical-align: middle;
+}
+#translatedContentWrapper img {
   width: 64px;
 }
 
 #textBoxTranslator {
+  background: none;
   border: 10px solid #000;
   border-radius: 10px;
   font-size: 24px;
