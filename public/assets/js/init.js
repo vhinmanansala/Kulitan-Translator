@@ -6,18 +6,21 @@ $(function() {
 
     $('#textBoxTranslator').keyup(function() {
         $('#translatedContent').empty();
-        var word = $(this).val();
-        var _syllables = syllables(word);
+        var words = $(this).val().split(" ");
 
-        console.log(_syllables);
+        words.forEach(function(word) {
+            var _syllables = syllables(word);
 
-        _syllables.forEach(function(syllable) {
-            var str = syllable.match(/.{1,2}/g);
-            
-            str.forEach(function(letter) {
-                image = "<img src='" + IMAGE_PATH + letter + IMAGE_EXTENSION + "'>";
-                $('#translatedContent').append(image);
-            })
+            console.log(_syllables);
+
+            _syllables.forEach(function(syllable) {
+                var str = syllable.match(/.{1,2}/g);
+                
+                str.forEach(function(letter) {
+                    image = "<img src='" + IMAGE_PATH + letter + IMAGE_EXTENSION + "'>";
+                    $('#translatedContent').append(image);
+                })
+            });
         });
     })
 });
