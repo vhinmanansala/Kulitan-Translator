@@ -18,16 +18,28 @@ $(function() {
 
         words.forEach(function(word) {
             var _syllables = syllables(word);
-
             console.log(_syllables);
-
             _syllables.forEach(function(syllable) {
-                var str = syllable.match(/.{1,2}/g);
-                
-                str.forEach(function(letter) {
-                    image = "<img src='" + IMAGE_PATH + letter + IMAGE_EXTENSION + "'>";
-                    $('#translatedContent').append(image);
-                })
+                var firstTwoCharacters = syllable.charAt(0) + syllable.charAt(1);
+
+                if ((/[aeiou]/g).test(firstTwoCharacters) == false) {
+                    if (syllable.length == 3) {
+                        var firstCharacter = syllable.charAt(0);
+                        var lastTwoCharacters = syllable.charAt(1) + syllable.charAt(2);
+
+                        image = "<img src='" + IMAGE_PATH + firstCharacter + IMAGE_EXTENSION + "'>";
+                        $('#translatedContent').append(image);
+
+                        image = "<img src='" + IMAGE_PATH + lastTwoCharacters + IMAGE_EXTENSION + "'>";
+                        $('#translatedContent').append(image);
+                    }
+                } else {
+                    var str = syllable.match(/.{1,2}/g);
+                    str.forEach(function(letter) {
+                        image = "<img src='" + IMAGE_PATH + letter + IMAGE_EXTENSION + "'>";
+                        $('#translatedContent').append(image);
+                    })
+                }
             });
         });
     })
