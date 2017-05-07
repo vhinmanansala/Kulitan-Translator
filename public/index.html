@@ -29,12 +29,39 @@
     <div class="row">
         <div class="large-12 columns">
             <input type="text" id="textBoxTranslator" value="Enter your text here">
+            <button id="export">Export</button>
         </div>
     </div>
+
+    <img src="" alt="" id="output">
+
+    <canvas id="canvas"></canvas>
 
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/syllables.js"></script>
     <script src="assets/js/init.js"></script>
+    <script src="node_modules/merge-images/dist/index.umd.js"></script>
+
+    <script>
+        $('#export').on('click', function() {
+            var images = [];
+            var x = 0;
+
+            $('#translatedContent img').each(function() {   
+                var image = {};
+                image.src = this.src;
+                image.x = x;
+                images.push(image);
+
+                x += 300;
+            });
+
+            mergeImages(images, {
+                width: x,
+                height: 350
+            }).then(b64 => $('#output').attr('src', b64));
+        });
+    </script>
 </body>
 
 </html>
