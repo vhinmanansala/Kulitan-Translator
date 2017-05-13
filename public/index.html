@@ -33,34 +33,14 @@
         </div>
     </div>
 
-    <img src="" alt="" id="output">
+    <img src="" alt="" id="output" style="display: none;">
 
     <canvas id="canvas"></canvas>
 
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/syllables.js"></script>
-    <script src="assets/js/init.js"></script>
     <script src="node_modules/merge-images/dist/index.umd.js"></script>
-
-    <script>
-        $('#export').on('click', function() {
-            var images = [];
-            var x = 0;
-
-            $('#translatedContent img').each(function() {   
-                var image = {};
-                image.src = this.src;
-                image.x = x;
-                images.push(image);
-
-                x += 300;
-            });
-
-            mergeImages(images, {
-                width: x,
-                height: 350
-            }).then(b64 => $('#output').attr('src', b64));
-        });
+    <script src="assets/js/init.js"></script>
     </script>
 </body>
 

@@ -13,12 +13,13 @@ $(function() {
     });
 
     $('#textBoxTranslator').keyup(function() {
+        $('#output').attr('src', '');
         $('#translatedContent').empty();
         var words = $(this).val().split(" ");
 
         words.forEach(function(word) {
             var _syllables = syllables(word);
-            console.log(_syllables);
+     
             _syllables.forEach(function(syllable) {
                 var firstTwoCharacters = syllable.charAt(0) + syllable.charAt(1);
 
@@ -42,5 +43,34 @@ $(function() {
                 }
             });
         });
-    })
+
+        var images = [];
+        var x = 0;
+
+        $('#translatedContent img').each(function() {   
+            var image = {};
+            image.src = this.src;
+            image.x = x;
+            images.push(image);
+
+            x += 300;
+        });
+
+        mergeImages(images, {
+            width: x,
+            height: 350
+        }).then(b64 => $('#output').attr('src', b64));
+    });
+
+    $('#export').click(function() {
+        var imageSource = $('#output').attr('src');
+        var link = document.createElement('a');
+        link.download = 'translation.png';
+        var uri = imageSource;
+        link.href = uri;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        delete link;
+    }); 
 });
