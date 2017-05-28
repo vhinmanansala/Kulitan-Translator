@@ -28,8 +28,22 @@
 
     <div class="row">
         <div class="large-12 columns">
-            <input type="text" id="textBoxTranslator" value="Enter your text here">
+            <input type="text" id="textBoxTranslator" placeholder="Enter your text here">
             <button id="export">Export</button>
+        </div>
+    </div>
+
+    <div id="orientation" class="row">
+        <div class="large-12 columns">
+            <div class="field">
+                <label for="landscape">Landscape</label>
+                <input id="landscape" type="radio" value="landscape" name="orientation" checked>
+            </div>
+
+            <div class="field">
+                <label for="portrait">Portrait</label>
+                <input id="portrait" type="radio" value="portrait" name="orientation">
+            </div>
         </div>
     </div>
 
