@@ -5,12 +5,20 @@ $(function() {
     var image;
 
     $('#textBoxTranslator').keyup(function() {
+        var wordCounter = 1;
+
+        $('.wordWrapper').remove();
         $('#output').attr('src', '');
         $('#translatedContent').empty();
 
         var words = $(this).val().split(" ");
 
         words.forEach(function(word) {
+            if ($('#portrait').is(':checked')) {
+                var html = "<div id='wordWrapper" + wordCounter + "' class='wordWrapper'></div>";
+                $('#translatedContent').append(html);
+            }
+
             var _syllables = syllables(word);
      
             _syllables.forEach(function(syllable) {
@@ -19,9 +27,11 @@ $(function() {
                 if ($('#landscape').is(':checked')) {
                     landscapeTranslation(syllable, firstTwoCharacters);
                 } else if ($('#portrait').is(':checked')) {
-                    portraitTranslation(syllable, firstTwoCharacters);
+                    portraitTranslation(syllable, firstTwoCharacters, wordCounter);
                 }
             });
+
+            wordCounter++;
         });
 
         generateImageForSyllable();
@@ -61,7 +71,7 @@ $(function() {
         }
     }
 
-    function portraitTranslation(syllable, firstTwoCharacters) {
+    function portraitTranslation(syllable, firstTwoCharacters, wordCounter) {
         if ((/[aeiou]/g).test(firstTwoCharacters) == false) {
             if (syllable.length == 3) {
                 var firstCharacter = syllable.charAt(0);
@@ -70,7 +80,9 @@ $(function() {
                 image1 = "<img class='image' src='" + IMAGE_PATH + firstCharacter + IMAGE_EXTENSION + "'>";
                 image2 = "<img class='image' src='" + IMAGE_PATH + lastTwoCharacters + IMAGE_EXTENSION + "'>";
 
-                $('#translatedContent').append("<div class='syllable'>" + image1 + image2 + "</div>");
+                var word = $('#wordWrapper' + wordCounter).append("<div class='syllable'>" + image1 + image2 + "</div>");
+
+                $('#translatedContent').append(word);
             }
         } else {
             var str = syllable.match(/.{1,2}/g);
@@ -79,11 +91,16 @@ $(function() {
                 var image1 = "<img class='image' src='" + IMAGE_PATH + str[0] + IMAGE_EXTENSION + "'>";
                 var image2 = "<img class='image' src='" + IMAGE_PATH + str[1] + IMAGE_EXTENSION + "'>";
 
-                $('#translatedContent').append("<div class='syllable'>" + image1 + image2 + "</div>");
+                var word = $('#wordWrapper' + wordCounter).append("<div class='syllable'>" + image1 + image2 + "</div>");
+
+                $('#translatedContent').append(word);
             } else {
                 str.forEach(function(letter) {
                     image = "<img class='image' src='" + IMAGE_PATH + letter + IMAGE_EXTENSION + "'>";
-                    $('#translatedContent').append("<div class='syllable'>" + image + "</div>");
+
+                    var word = $('#wordWrapper' + wordCounter).append("<div class='syllable'>" + image + "</div>");
+
+                    $('#translatedContent').append(word);
                 });
             }
         }
