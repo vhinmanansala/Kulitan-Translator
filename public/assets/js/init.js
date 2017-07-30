@@ -147,23 +147,34 @@ $(function() {
         } else if ($('#portrait').is(':checked')) {
             var images = [];
             var x = 0;
+            var y = 0;
 
             $('.portrait').each(function() {
-                $(this).find('img').each(function() {
-                    var image = {};
-                    image.src = this.src;
-                    image.x = x;
-                    images.push(image);
+                y = 0;
 
-                    x += 300;
+                $(this).find('.syllable').each(function() {
+                    $(this).find('img').each(function() {
+                        var image = {};
+                        image.src = this.src;
+                        image.x = x;
+                        image.y = y;
+                        images.push(image);
+
+                        x += 300;
+                    });
+
+                    x = 0;
+                    y += 300;
                 });
 
-                x += 300;
+                x += 900;
             });
 
+            console.log(images);
+
             mergeImages(images, {
-                width: x,
-                height: 350
+                width: 3600,
+                height: 1600
             }).then(b64 => $('#output').attr('src', b64));
         }
     }
