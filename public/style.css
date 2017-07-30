@@ -38,7 +38,15 @@ header#pageHeader img {
   padding: 30px;
 }
 
-.wordWrapper {
+.wordWrapper.landscape {
+  display: inline-block;
+  margin-right: 30px;
+}
+.wordWrapper.landscape .syllable {
+  display: inline-block;
+}
+
+.wordWrapper.portrait {
   float: right;
   margin-left: 34px;
   width: 128px;

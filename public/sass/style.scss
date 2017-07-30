@@ -36,12 +36,21 @@ header#pageHeader {
 #textBoxTranslator {
     background: none;
     border: 10px solid #000;
-    border-radius: 10px;
+    border-radius: 10px; 
     font-size: 24px;
     padding: 30px;
 }
 
-.wordWrapper {
+.wordWrapper.landscape {
+    display: inline-block;
+    margin-right: 30px;
+
+    .syllable {
+        display: inline-block;
+    }
+}
+
+.wordWrapper.portrait {
     float: right;
     margin-left: 34px;
     width: 128px;
