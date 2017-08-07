@@ -116,9 +116,9 @@ $(function() {
         html2canvas($('#translatedContent'), {
             onrendered: function(canvas) {
                 theCanvas = canvas;
-                
+
                 canvas.toBlob(function(blob) {
-                    saveAs(blob, "Dashboard.png"); 
+                    saveAs(blob, "translation.png"); 
                 });
             }
         });
