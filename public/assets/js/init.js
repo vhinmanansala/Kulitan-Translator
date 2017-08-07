@@ -113,14 +113,33 @@ $(function() {
     }
 
     function generateImageForSyllable() {
-        html2canvas($('#translatedContent'), {
-            onrendered: function(canvas) {
-                theCanvas = canvas;
+        var width = 0;
 
-                canvas.toBlob(function(blob) {
-                    saveAs(blob, "translation.png"); 
-                });
-            }
-        });
+        if ($('#landscape').is(':checked')) {
+            $('.wordWrapper').each(function() {
+                width += $(this).outerWidth(true);
+            });
+
+            html2canvas($('#translatedContent'), {
+                width: width,
+                onrendered: function(canvas) {
+                    theCanvas = canvas;
+
+                    canvas.toBlob(function(blob) {
+                        saveAs(blob, "translation.png"); 
+                    });
+                }
+            });
+        } else if ($('#portrait').is(':checked')) {
+            html2canvas($('#translatedContent'), {
+                onrendered: function(canvas) {
+                    theCanvas = canvas;
+
+                    canvas.toBlob(function(blob) {
+                        saveAs(blob, "translation.png"); 
+                    });
+                }
+            });
+        }
     }
 });
