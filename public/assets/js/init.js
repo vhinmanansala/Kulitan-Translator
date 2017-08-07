@@ -36,20 +36,10 @@ $(function() {
 
             wordCounter++;
         });
-
-        generateImageForSyllable();
     });
 
     $('#export').click(function() {
-        var imageSource = $('#output').attr('src');
-        var link = document.createElement('a');
-        link.download = 'translation.png';
-        var uri = imageSource;
-        link.href = uri;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        delete link;
+        generateImageForSyllable();
     }); 
 
     function landscapeTranslation(syllable, firstTwoCharacters, wordCounter) {
@@ -123,59 +113,14 @@ $(function() {
     }
 
     function generateImageForSyllable() {
-        if ($('#landscape').is(':checked')) {
-            var images = [];
-            var x = 0;
-
-            $('.landscape').each(function() {
-                $(this).find('img').each(function() {
-                    var image = {};
-                    image.src = this.src;
-                    image.x = x;
-                    images.push(image);
-
-                    x += 300;
+        html2canvas($('#translatedContent'), {
+            onrendered: function(canvas) {
+                theCanvas = canvas;
+                
+                canvas.toBlob(function(blob) {
+                    saveAs(blob, "Dashboard.png"); 
                 });
-
-                x += 300;
-            });
-
-            mergeImages(images, {
-                width: x,
-                height: 350
-            }).then(b64 => $('#output').attr('src', b64));
-        } else if ($('#portrait').is(':checked')) {
-            var images = [];
-            var x = 0;
-            var y = 0;
-
-            $('.portrait').each(function() {
-                y = 0;
-
-                $(this).find('.syllable').each(function() {
-                    $(this).find('img').each(function() {
-                        var image = {};
-                        image.src = this.src;
-                        image.x = x;
-                        image.y = y;
-                        images.push(image);
-
-                        x += 300;
-                    });
-
-                    x = 0;
-                    y += 300;
-                });
-
-                x += 900;
-            });
-
-            console.log(images);
-
-            mergeImages(images, {
-                width: 3600,
-                height: 1600
-            }).then(b64 => $('#output').attr('src', b64));
-        }
+            }
+        });
     }
 });
