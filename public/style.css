@@ -30,6 +30,11 @@ header#pageHeader img {
   width: 64px;
 }
 
+#portraitWrapper {
+  display: inline-block;
+  float: right;
+}
+
 #textBoxTranslator {
   background: none;
   border: 10px solid #000;

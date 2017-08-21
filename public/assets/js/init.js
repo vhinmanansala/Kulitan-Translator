@@ -7,20 +7,24 @@ $(function() {
     $('#textBoxTranslator').keyup(function() {
         var wordCounter = 1;
 
+        $('#portraitWrapper').remove();
         $('.wordWrapper').remove();
         $('#output').attr('src', '');
         $('#translatedContent').empty();
 
         var words = $(this).val().split(" ");
 
+        var parent = "<div id='portraitWrapper'></div>";
+        $('#translatedContent').append(parent);
+
         words.forEach(function(word) {
             if ($('#portrait').is(':checked')) {
                 var html = "<div id='wordWrapper" + wordCounter + "' class='wordWrapper portrait'></div>";
+                $('#portraitWrapper').append(html);
             } else if ($('#landscape').is(':checked')) {
                 var html = "<div id='wordWrapper" + wordCounter + "' class='wordWrapper landscape'></div>";
+                $('#translatedContent').append(html);
             }
-
-            $('#translatedContent').append(html);
 
             var _syllables = syllables(word);
      
@@ -88,7 +92,7 @@ $(function() {
 
                 var word = $('#wordWrapper' + wordCounter).append("<div class='syllable'>" + image1 + image2 + "</div>");
 
-                $('#translatedContent').append(word);
+                $('#portraitWrapper').append(word);
             }
         } else {
             var str = syllable.match(/.{1,2}/g);
@@ -99,14 +103,14 @@ $(function() {
 
                 var word = $('#wordWrapper' + wordCounter).append("<div class='syllable'>" + image1 + image2 + "</div>");
 
-                $('#translatedContent').append(word);
+                $('#portraitWrapper').append(word);
             } else {
                 str.forEach(function(letter) {
                     image = "<img class='image' src='" + IMAGE_PATH + letter + IMAGE_EXTENSION + "'>";
 
                     var word = $('#wordWrapper' + wordCounter).append("<div class='syllable'>" + image + "</div>");
 
-                    $('#translatedContent').append(word);
+                    $('#portraitWrapper').append(word);
                 });
             }
         }
@@ -131,7 +135,7 @@ $(function() {
                 }
             });
         } else if ($('#portrait').is(':checked')) {
-            html2canvas($('#translatedContent'), {
+            html2canvas($('#portraitWrapper'), {
                 onrendered: function(canvas) {
                     theCanvas = canvas;
 
