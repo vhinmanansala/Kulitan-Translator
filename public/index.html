@@ -8,48 +8,53 @@
 </head>
 
 <body>
-    <div class="row">
-        <div class="large-12 columns">
-            <header id="pageHeader">
-                <img src="assets/images/logo.png">
-            </header>
+    <div id="header">
+        <div class="row">
+            <div class="large-12 columns">
+                <header id="pageHeader">
+                    <img src="assets/images/logo.png">
+                </header>
+            </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="large-12 columns">
-            <div id="translatedContentWrapper">
-                <div id="translatedContent">
-                    
+    <div id="backgroundWrapper">
+        <div class="row">
+            <div class="large-12 columns">
+                <div id="translatedContentWrapper">
+                    <div id="translatedContent">
+                        
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="large-12 columns">
-            <input type="text" id="textBoxTranslator" placeholder="Enter your text here">
-            <button id="export">Export</button>
-        </div>
-    </div>
-
-    <div id="orientation" class="row">
-        <div class="large-12 columns">
-            <div class="field">
-                <label for="landscape">Landscape</label>
-                <input id="landscape" type="radio" value="landscape" name="orientation" checked>
-            </div>
-
-            <div class="field">
-                <label for="portrait">Portrait</label>
-                <input id="portrait" type="radio" value="portrait" name="orientation">
+        <div class="row">
+            <div class="large-12 columns">
+                <input type="text" id="textBoxTranslator" placeholder="Enter your text here">
             </div>
         </div>
+        
+
+        <div class="clearfix">
+            <div id="orientation">
+                <span>Select Orientation:</span>
+
+                <div class="field">
+                    <input id="landscape" type="radio" value="landscape" name="orientation" checked>
+                    <label for="landscape">Landscape</label>
+                </div>
+
+                <div class="field">
+                    <input id="portrait" type="radio" value="portrait" name="orientation">
+                    <label for="portrait">Portrait</label>
+                </div>
+            </div>
+
+            <button id="export">Export text as image</button>
+        </div>
     </div>
-
-    <img src="" alt="" id="output" style="display: none;">
-
-    <canvas id="canvas"></canvas>
+    
 
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/syllables.js"></script>

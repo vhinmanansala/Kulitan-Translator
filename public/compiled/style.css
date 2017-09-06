@@ -1,13 +1,17 @@
 body {
   background: url("assets/images/background.jpg") no-repeat top scroll transparent;
-  background-size: 100%;
+  background-size: cover;
 }
 
-header#pageHeader {
-  border-bottom: 1px solid #333;
-  margin: 15px auto;
-  padding-bottom: 30px;
+input[type="text"]#textBoxTranslator::-webkit-input-placeholder {
+  color: black;
 }
+
+#header {
+  background: url("assets/images/header-bg.jpg") repeat-x 0 0 scroll transparent;
+  padding: 15px 0;
+}
+
 header#pageHeader img {
   display: block;
   margin: 0 auto;
@@ -16,14 +20,26 @@ header#pageHeader img {
   width: 100%;
 }
 
+#backgroundWrapper {
+  background: url("assets/images/translationbackground.jpg") no-repeat 0 0 scroll transparent;
+  background-size: cover;
+  box-shadow: 0 0 40px #000;
+  margin: 50px auto 0;
+  padding: 15px;
+  width: 60%;
+}
+
 #translatedContentWrapper {
+  background: rgba(237, 232, 225, 0.8);
+  box-shadow: inset 0px 0px 30px #000000;
   display: table;
   height: 400px;
-  margin: 30px;
+  margin: 15px 0 20px;
   width: 100%;
 }
 #translatedContentWrapper #translatedContent {
   display: table-cell;
+  padding: 30px;
   vertical-align: middle;
 }
 #translatedContentWrapper img {
@@ -36,10 +52,13 @@ header#pageHeader img {
 }
 
 #textBoxTranslator {
-  background: none;
-  border: 10px solid #000;
-  border-radius: 10px;
+  background: rgba(237, 232, 225, 0.8);
+  box-shadow: inset 0px 0px 30px #000000;
+  border: none;
+  color: #000000;
+  font-family: serif;
   font-size: 24px;
+  outline: none;
   padding: 30px;
 }
 
@@ -55,4 +74,36 @@ header#pageHeader img {
   float: right;
   margin-left: 34px;
   width: 128px;
+}
+
+#orientation {
+  background: url("assets/images/header-bg.jpg") repeat-x 0 0 scroll transparent;
+  border-radius: 100px;
+  float: left;
+  padding: 15px 35px;
+}
+#orientation input[type='radio'] {
+  font-family: serif;
+  margin: 0;
+}
+#orientation span {
+  color: #fcad2e;
+  font-family: serif;
+  font-weight: bold;
+}
+#orientation .field, #orientation label {
+  display: inline;
+  color: #ffffff;
+  font-family: serif;
+}
+
+#export {
+  background: url("assets/images/header-bg.jpg") repeat-x 0 0 scroll transparent;
+  border-radius: 100px;
+  color: #fcad2e;
+  cursor: pointer;
+  font-family: serif;
+  float: right;
+  font-weight: bold;
+  padding: 20px 35px;
 }
