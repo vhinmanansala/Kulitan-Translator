@@ -1,5 +1,5 @@
 $(function() {
-    var URL = "http://kulitan.app/assets/kulitan/";
+    // var URL = "http://kulitan.app/assets/kulitan/";
     var IMAGE_PATH = "assets/kulitan/";
     var IMAGE_EXTENSION = ".png";
     var image;
@@ -12,7 +12,8 @@ $(function() {
         $('#output').attr('src', '');
         $('#translatedContent').empty();
 
-        var words = $(this).val().split(" ");
+        var words = $(this).val().toLowerCase();
+            words = words.split(" ");
 
         var parent = "<div id='portraitWrapper'></div>";
         $('#translatedContent').append(parent);
